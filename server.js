@@ -2,12 +2,11 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 
-// Express App Setup
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Client Connection Handle
+// WebSocket connection setup
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
@@ -32,8 +31,10 @@ io.on("connection", (socket) => {
   });
 });
 
-// Server Start
-const PORT = process.env.PORT || 3000; // Use Render's dynamic port or fallback to 3000 for local development
+// Serve static files (if needed)
+app.use(express.static("public")); // Or wherever your static files are stored
+
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Signaling server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

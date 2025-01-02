@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000"); // Yahan apna signaling server URL daalein
+const socket = io("https://callingsite.onrender.com"); // Yahan apna signaling server URL daalein
 
 let localStream;
 let peerConnection;
